@@ -1,0 +1,265 @@
+---
+const skillCategories = [
+  {
+    category: "Frontend",
+    skills: [
+      { name: "React" },
+      { name: "NextJS" },
+      { name: "TypeScript" },
+      { name: "JavaScript" },
+      { name: "Tailwind CSS" }
+    ]
+  },
+  {
+    category: "Backend", 
+    skills: [
+      { name: "Node.js" },
+      { name: "NestJS" },
+      { name: "Express" },
+      { name: "NextJS API" },
+      { name: "AWS Lambda" }
+    ]
+  },
+  {
+    category: "Database",
+    skills: [
+      { name: "MySQL" },
+      { name: "PostgreSQL" },
+      { name: "MongoDB" }
+    ]
+  },
+  {
+    category: "DevOps & Tools",
+    skills: [
+      { name: "Docker" },
+      { name: "Git" },
+      { name: "GitHub Actions" },
+      { name: "AWS" }
+    ]
+  }
+];
+---
+
+<section class="skills terminal-card fade-in">
+  <div class="terminal-window">
+    <div class="terminal-header-bar">
+      <span class="terminal-title">~/skills $ find . -name "*.skill" -type f</span>
+    </div>
+    <div class="terminal-content">
+      <div class="skills-output">
+        {skillCategories.map((category, categoryIndex) => (
+          <div class="skill-category" style={`animation-delay: ${categoryIndex * 0.2}s`}>
+            <div class="terminal-prompt">
+              <span class="prompt-symbol">$</span>
+              <span>ls -la ./{category.category.toLowerCase()}/</span>
+            </div>
+            
+            <div class="directory-listing">
+              {category.skills.map((skill, skillIndex) => (
+                <div class="file-line" style={`animation-delay: ${(categoryIndex * 0.2) + (skillIndex * 0.1)}s`}>
+                  <span class="permissions">-rw-r--r--</span>
+                  <span class="size">1024</span>
+                  <span class="date">Jan 01 2024</span>
+                  <span class="filename">{skill.name.toLowerCase().replace(/\s+/g, '_')}.skill</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">$</span>
+        <span class="typing-effect">echo "Always learning new technologies..."</span>
+      </div>
+      
+      <div class="output-line">
+        <span>Always learning new technologies...</span>
+      </div>
+
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">$</span>
+        <span class="cursor"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    animation: fadeInUp 0.8s ease forwards;
+    padding: 0;
+  }
+
+  .terminal-window {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+  }
+
+  .terminal-header-bar {
+    background: var(--bg-tertiary);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .terminal-content {
+    padding: 1.5rem;
+  }
+
+  .skills-output {
+    margin-bottom: 2rem;
+  }
+
+  .skill-category {
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .skill-category:last-child {
+    margin-bottom: 1rem;
+  }
+
+  .terminal-prompt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+  }
+
+  .prompt-symbol {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .typing-effect {
+    color: var(--text-secondary);
+    animation: typewriter 2s steps(30) 1s both;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--text-primary);
+    padding-right: 2px;
+  }
+
+  .directory-listing {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 13px;
+  }
+
+  .file-line {
+    display: grid;
+    grid-template-columns: 120px 60px 100px 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.3rem;
+    color: var(--text-secondary);
+    animation: fadeInUp 0.4s ease forwards;
+    opacity: 0;
+  }
+
+  .file-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .permissions {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .size {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .date {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .filename {
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+
+  .output-line {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 14px;
+  }
+
+  .cursor::after {
+    content: '█';
+    color: var(--text-primary);
+    animation: blink 1s infinite;
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+      border-right-color: var(--text-primary);
+    }
+    to {
+      width: 100%;
+      border-right-color: transparent;
+    }
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .terminal-content {
+      padding: 1rem;
+    }
+
+    .file-line {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+      text-align: left;
+    }
+
+    .permissions,
+    .size,
+    .date {
+      display: none;
+    }
+
+    .filename {
+      padding-left: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .terminal-header-bar {
+      font-size: 11px;
+    }
+
+    .terminal-prompt {
+      font-size: 12px;
+    }
+
+    .directory-listing {
+      padding: 0.5rem;
+    }
+  }
+</style>

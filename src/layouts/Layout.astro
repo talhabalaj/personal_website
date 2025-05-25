@@ -1,0 +1,349 @@
+---
+export interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Talha Balaj - Full Stack Engineer Portfolio" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-mono: 'DM Mono', monospace;
+            
+            /* Terminal inspired colors - black and white only */
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --border-color: #333333;
+            --border-hover: #555555;
+            
+            /* Terminal green accent for occasional use */
+            --accent: #00ff00;
+            
+            --container-max-width: 900px;
+            
+            /* Terminal cursor */
+            --cursor-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Terminal-style grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Terminal prompt styling */
+        .terminal-prompt::before {
+            content: '$ ';
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        a:hover {
+            border-bottom: 1px solid var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-mono);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        /* Terminal cursor animation */
+        .cursor::after {
+            content: '█';
+            color: var(--cursor-color);
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Terminal scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 0;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border-hover);
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Terminal window styling */
+        .terminal-window {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            position: relative;
+            font-family: var(--font-mono);
+        }
+
+        .terminal-header {
+            background: var(--bg-tertiary);
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+        }
+
+        /* Code blocks */
+        pre, code {
+            font-family: var(--font-mono);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        pre {
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        code {
+            padding: 0.2rem 0.4rem;
+            font-size: 12px;
+        }
+
+        /* Lists */
+        ul, ol {
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        li::marker {
+            color: var(--text-muted);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-mono);
+            font-size: 13px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--bg-secondary);
+            font-weight: 500;
+        }
+
+        /* Utility classes */
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .terminal-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-family: var(--font-mono);
+            transition: all 0.2s ease;
+        }
+
+        .terminal-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-tertiary);
+        }
+
+        /* ASCII art support */
+        .ascii-art {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            line-height: 1;
+            color: var(--text-muted);
+            white-space: pre;
+            margin: 1rem 0;
+        }
+
+        /* Terminal input styling */
+        input, textarea {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            padding: 0.5rem;
+            font-size: 14px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--text-primary);
+        }
+
+        /* Buttons */
+        button {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-hover);
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
+            }
+            
+            .terminal-card {
+                padding: 1rem;
+            }
+
+            body {
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <slot />
+    </main>
+</body>
+</html>

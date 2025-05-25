@@ -1,0 +1,420 @@
+---
+import { formatDistanceToNowStrict } from "date-fns";
+
+const experiences = [
+  {
+    role: "Senior Software Engineer",
+    company: "mobileLive, Inc", 
+    dates: "April 2024 - Present",
+    duration: formatDistanceToNowStrict(new Date("2024-04-01"), {
+      
+    }),
+    type: "Full-time",
+    location: "Toronto, ON",
+    status: "current",
+    details: [
+      "Reverse engineered and rebuilt in-house pricing engine SDK for Staples.ca",
+      "Lead development of new NextJS checkout experience for the entire store platform",
+      "Enhanced development workflow and tooling, improving team velocity",
+    ],
+    skills: ["React", "NextJS", "Shopify", "SDK Development", "E-commerce"],
+  },
+  {
+    role: "Software Engineer",
+    company: "Nextbridge, Inc",
+    dates: "June 2022 - Mar 2024",
+    duration: "1 year 9 months",
+    type: "Full-time",
+    location: "Lahore, Pakistan",
+    details: [
+      "Developed customer device management interface with real-time tracking",
+      "Led migration from Create React App to NextJS for improved SEO",
+      "Implemented AWS S3 and CloudFront CDN integration",
+      "Architected full-stack solution using NextJS and NestJS microservices",
+      "Built NodeJS backend for order tracking across multiple platforms",
+    ],
+    skills: ["React", "NodeJS", "NextJS", "NestJS", "Docker", "AWS"],
+  },
+  {
+    role: "Full Stack Developer",
+    company: "Netelsoft",
+    dates: "May 2021 - April 2022",
+    duration: "1 year",
+    type: "Full-time",
+    location: "Lahore, Pakistan",
+    details: [
+      "Built VPN service management dashboard using React and Express",
+      "Developed cross-platform ISP management app using Flutter and NodeJS",
+      "Created web-based configuration dashboard for Huawei OLT equipment",
+    ],
+    skills: ["React", "NodeJS", "Express", "MySQL", "Docker", "Flutter"],
+  },
+  {
+    role: "Software Engineer Freelancer",
+    company: "Upwork (Freelance)",
+    dates: "Jan 2020 - May 2021",
+    duration: "1 year 4 months",
+    type: "Freelance",
+    location: "Remote",
+    details: [
+      "Delivered full-stack web applications for international clients",
+      "Maintained perfect 5-star rating and 100% job success score",
+      "Achieved Top Rated status representing top 3% of freelancers",
+    ],
+    skills: ["React", "NodeJS", "Express", "MySQL", "Docker"],
+  },
+];
+---
+
+<section class="experience terminal-card fade-in">
+  <div class="terminal-window">
+    <div class="terminal-header-bar">
+      <span class="terminal-title">~/experience $ cat work_history.log</span>
+    </div>
+    <div class="terminal-content">
+      {
+        experiences.map((exp, index) => (
+          <div
+            class="experience-entry"
+            style={`animation-delay: ${index * 0.3}s`}
+          >
+            <div class="terminal-prompt">
+              <span class="prompt-symbol">$</span>
+              <span>grep -A 20 "{exp.company}" experience.txt</span>
+            </div>
+
+            <div class="experience-output">
+              <div class="job-header">
+                <div class="job-line">
+                  <span class="field">Position:</span>
+                  <span class="value">{exp.role}</span>
+                  {exp.status === "current" && (
+                    <span class="status-current">[ACTIVE]</span>
+                  )}
+                </div>
+                <div class="job-line">
+                  <span class="field">Company:</span>
+                  <span class="value">{exp.company}</span>
+                </div>
+                <div class="job-line">
+                  <span class="field">Duration:</span>
+                  <span class="value">
+                    {exp.dates} ({exp.duration})
+                  </span>
+                </div>
+                <div class="job-line">
+                  <span class="field">Type:</span>
+                  <span class="value">{exp.type}</span>
+                </div>
+                <div class="job-line">
+                  <span class="field">Location:</span>
+                  <span class="value">{exp.location}</span>
+                </div>
+              </div>
+
+              <div class="responsibilities">
+                <div class="section-header">Key Responsibilities:</div>
+                {exp.details.map((detail, detailIndex) => (
+                  <div class="responsibility-line">
+                    <span class="bullet">•</span>
+                    <span class="text">{detail}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div class="technologies">
+                <div class="section-header">Technologies:</div>
+                <div class="tech-list">
+                  {exp.skills.map((skill, skillIndex) => (
+                    <span class="tech-item">
+                      {skill.toLowerCase().replace(/\s+/g, "_")}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {index !== experiences.length - 1 && (
+              <div class="separator">
+                <span>---</span>
+              </div>
+            )}
+          </div>
+        ))
+      }
+
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">$</span>
+        <span class="typing-effect">echo "Ready for new challenges..."</span>
+      </div>
+
+      <div class="output-line">
+        <span>Ready for new challenges...</span>
+      </div>
+
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">$</span>
+        <span class="cursor"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience {
+    padding: 0;
+  }
+
+  .terminal-window {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+  }
+
+  .terminal-header-bar {
+    background: var(--bg-tertiary);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .terminal-content {
+    padding: 1.5rem;
+  }
+
+  .experience-entry {
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .experience-entry:last-of-type {
+    margin-bottom: 2rem;
+  }
+
+  .terminal-prompt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+  }
+
+  .prompt-symbol {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .experience-output {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 13px;
+  }
+
+  .job-header {
+    margin-bottom: 2rem;
+  }
+
+  .job-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
+  }
+
+  .job-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .field {
+    color: var(--text-muted);
+    min-width: 80px;
+    font-size: 12px;
+  }
+
+  .value {
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+
+  .status-current {
+    color: var(--text-secondary);
+    font-size: 11px;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    margin-left: auto;
+  }
+
+  .responsibilities {
+    margin-bottom: 2rem;
+  }
+
+  .section-header {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .responsibility-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 13px;
+  }
+
+  .responsibility-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .bullet {
+    color: var(--text-muted);
+    font-weight: bold;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  .text {
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .technologies {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-item {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.3rem 0.6rem;
+    font-size: 11px;
+    transition: all 0.2s ease;
+  }
+
+  .tech-item:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-hover);
+  }
+
+  .separator {
+    text-align: center;
+    color: var(--text-muted);
+    margin: 2rem 0;
+    font-size: 14px;
+  }
+
+  .typing-effect {
+    color: var(--text-secondary);
+    animation: typewriter 2s steps(30) 1s both;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--text-primary);
+    padding-right: 2px;
+  }
+
+  .output-line {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 14px;
+  }
+
+  .cursor::after {
+    content: "█";
+    color: var(--text-primary);
+    animation: blink 1s infinite;
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+      border-right-color: var(--text-primary);
+    }
+    to {
+      width: 100%;
+      border-right-color: transparent;
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .terminal-content {
+      padding: 1rem;
+    }
+
+    .experience-output {
+      padding: 1rem;
+    }
+
+    .job-line {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .field {
+      min-width: auto;
+    }
+
+    .status-current {
+      margin-left: 0;
+    }
+
+    .tech-list {
+      gap: 0.25rem;
+    }
+
+    .tech-item {
+      font-size: 10px;
+      padding: 0.2rem 0.4rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .terminal-header-bar {
+      font-size: 11px;
+    }
+
+    .terminal-prompt {
+      font-size: 12px;
+    }
+
+    .responsibility-line {
+      font-size: 12px;
+    }
+  }
+</style>

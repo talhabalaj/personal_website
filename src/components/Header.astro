@@ -1,0 +1,311 @@
+---
+// Component script (if any JavaScript logic is needed in the future)
+const email = "hey@talhabalaj.com";
+const linkedinUrl = "https://www.linkedin.com/in/talhabalaj";
+const githubUrl = "https://github.com/talhabalaj";
+const websiteUrl = "https://talhabalaj.com";
+---
+
+<header class="terminal-header terminal-card fade-in">
+  <div class="terminal-window">
+    <div class="terminal-header-bar">
+      <span class="terminal-title">~/talha-balaj/portfolio $ whoami</span>
+    </div>
+    <div class="terminal-content">
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">$</span>
+        <span class="typing-effect">cat /etc/passwd | grep talha</span>
+      </div>
+      
+      <div class="user-info">
+        <div class="ascii-art">
+████████ █████  ██      ██   ██  █████  
+   ██   ██   ██ ██      ██   ██ ██   ██ 
+   ██   ███████ ██      ███████ ███████ 
+   ██   ██   ██ ██      ██   ██ ██   ██ 
+   ██   ██   ██ ███████ ██   ██ ██   ██
+        </div>
+        
+        <div class="user-details">
+          <div class="detail-line">
+            <span class="field">Name:</span>
+            <span class="value">Talha Balaj</span>
+          </div>
+          <div class="detail-line">
+            <span class="field">Role:</span>
+            <span class="value">Full Stack Engineer</span>
+          </div>
+          <div class="detail-line">
+            <span class="field">Status:</span>
+            <span class="value">Available for opportunities</span>
+            <span class="status-indicator">[ONLINE]</span>
+          </div>
+          <div class="detail-line">
+            <span class="field">Email:</span>
+            <a href={`mailto:${email}`} class="terminal-link">{email}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">$</span>
+        <span>ls -la /social/</span>
+      </div>
+      
+      <div class="directory-listing">
+        <div class="file-line">
+          <span class="permissions">drwxr-xr-x</span>
+          <span class="size">4096</span>
+          <span class="date">Jan 01 2024</span>
+          <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="terminal-link">
+            linkedin.profile
+          </a>
+        </div>
+        <div class="file-line">
+          <span class="permissions">drwxr-xr-x</span>
+          <span class="size">4096</span>
+          <span class="date">Jan 01 2024</span>
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="terminal-link">
+            github.repos
+          </a>
+        </div>
+        <div class="file-line">
+          <span class="permissions">drwxr-xr-x</span>
+          <span class="size">4096</span>
+          <span class="date">Jan 01 2024</span>
+          <a href={websiteUrl} target="_blank" rel="noopener noreferrer" class="terminal-link">
+            personal.website
+          </a>
+        </div>
+      </div>
+
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">$</span>
+        <span class="cursor"></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .terminal-header {
+    margin-bottom: 3rem;
+    padding: 0;
+  }
+
+  .terminal-window {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+  }
+
+  .terminal-header-bar {
+    background: var(--bg-tertiary);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .terminal-title {
+    font-weight: 400;
+  }
+
+  .terminal-content {
+    padding: 1.5rem;
+  }
+
+  .terminal-prompt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 14px;
+  }
+
+  .prompt-symbol {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .typing-effect {
+    color: var(--text-secondary);
+    animation: typewriter 2s steps(30) 1s both;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--text-primary);
+    padding-right: 2px;
+  }
+
+  .ascii-art {
+    color: var(--text-muted);
+    font-size: 8px;
+    line-height: 1;
+    margin: 1rem 0 2rem 0;
+    overflow-x: auto;
+  }
+
+  .user-info {
+    margin: 2rem 0;
+  }
+
+  .user-details {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .detail-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 13px;
+  }
+
+  .detail-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .field {
+    color: var(--text-muted);
+    min-width: 80px;
+    margin-right: 1rem;
+  }
+
+  .value {
+    color: var(--text-primary);
+    margin-right: 1rem;
+  }
+
+  .status-indicator {
+    color: var(--text-secondary);
+    font-size: 11px;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+  }
+
+  .directory-listing {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 13px;
+  }
+
+  .file-line {
+    display: grid;
+    grid-template-columns: 120px 60px 100px 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+  }
+
+  .file-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .permissions {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .size {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .date {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .terminal-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--border-color);
+    transition: all 0.2s ease;
+  }
+
+  .terminal-link:hover {
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.1rem 0.3rem;
+    margin: -0.1rem -0.3rem;
+  }
+
+  .cursor::after {
+    content: '█';
+    color: var(--text-primary);
+    animation: blink 1s infinite;
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+      border-right-color: var(--text-primary);
+    }
+    to {
+      width: 100%;
+      border-right-color: transparent;
+    }
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    .terminal-content {
+      padding: 1rem;
+    }
+
+    .ascii-art {
+      font-size: 6px;
+    }
+
+    .file-line {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+      text-align: left;
+    }
+
+    .permissions,
+    .size,
+    .date {
+      display: none;
+    }
+
+    .detail-line {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .field {
+      min-width: auto;
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ascii-art {
+      font-size: 5px;
+    }
+    
+    .terminal-header-bar {
+      font-size: 11px;
+    }
+
+    .terminal-prompt {
+      font-size: 12px;
+    }
+  }
+</style>

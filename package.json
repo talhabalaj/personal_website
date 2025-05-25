@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.8.0"
+    "astro": "^5.8.0",
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/date-fns": "^2.5.3"
   }
 }

@@ -1,0 +1,285 @@
+---
+const education = [
+  {
+    degree: "Bachelors in Computer Science",
+    institution: "University of Engineering and Technology, Lahore",
+    location: "Lahore, Pakistan",
+    duration: "2018 - 2022",
+    gpa: "3.4/4.0",
+    type: "Bachelor's Degree",
+    highlights: [
+      "Software Engineering & Development",
+      "Data Structures & Algorithms",
+      "Database Management Systems",
+      "Computer Networks & Security"
+    ]
+  }
+];
+---
+
+<section class="education terminal-card fade-in">
+  <div class="terminal-window">
+    <div class="terminal-header-bar">
+      <span class="terminal-title">~/education $ cat academic_records.txt</span>
+    </div>
+    <div class="terminal-content">
+      {education.map((edu, index) => (
+        <div class="education-entry" style={`animation-delay: ${index * 0.3}s`}>
+          <div class="terminal-prompt">
+            <span class="prompt-symbol">$</span>
+            <span>head -n 20 university_transcript.log</span>
+          </div>
+          
+          <div class="education-output">
+            <div class="academic-header">
+              <div class="academic-line">
+                <span class="field">Degree:</span>
+                <span class="value">{edu.degree}</span>
+              </div>
+              <div class="academic-line">
+                <span class="field">Institution:</span>
+                <span class="value">{edu.institution}</span>
+              </div>
+              <div class="academic-line">
+                <span class="field">Duration:</span>
+                <span class="value">{edu.duration}</span>
+              </div>
+              <div class="academic-line">
+                <span class="field">Location:</span>
+                <span class="value">{edu.location}</span>
+              </div>
+              <div class="academic-line">
+                <span class="field">GPA:</span>
+                <span class="value">{edu.gpa}</span>
+              </div>
+            </div>
+
+            <div class="coursework">
+              <div class="section-header">Core Coursework:</div>
+              {edu.highlights.map((course, courseIndex) => (
+                <div class="course-line">
+                  <span class="course-bullet">•</span>
+                  <span class="course-text">{course}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">$</span>
+        <span class="typing-effect">echo "Continuous learning mindset..."</span>
+      </div>
+      
+      <div class="output-line">
+        <span>Continuous learning mindset...</span>
+      </div>
+
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">$</span>
+        <span class="cursor"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .education {
+    padding: 0;
+  }
+
+  .terminal-window {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+  }
+
+  .terminal-header-bar {
+    background: var(--bg-tertiary);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .terminal-content {
+    padding: 1.5rem;
+  }
+
+  .education-entry {
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .education-entry:last-of-type {
+    margin-bottom: 2rem;
+  }
+
+  .terminal-prompt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+  }
+
+  .prompt-symbol {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .education-output {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 13px;
+  }
+
+  .academic-header {
+    margin-bottom: 2rem;
+  }
+
+  .academic-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
+  }
+
+  .academic-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .field {
+    color: var(--text-muted);
+    min-width: 100px;
+    font-size: 12px;
+  }
+
+  .value {
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+
+  .coursework {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+  }
+
+  .section-header {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .course-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 13px;
+  }
+
+  .course-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .course-bullet {
+    color: var(--text-muted);
+    font-weight: bold;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  .course-text {
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .typing-effect {
+    color: var(--text-secondary);
+    animation: typewriter 2s steps(30) 1s both;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--text-primary);
+    padding-right: 2px;
+  }
+
+  .output-line {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 14px;
+  }
+
+  .cursor::after {
+    content: '█';
+    color: var(--text-primary);
+    animation: blink 1s infinite;
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+      border-right-color: var(--text-primary);
+    }
+    to {
+      width: 100%;
+      border-right-color: transparent;
+    }
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .terminal-content {
+      padding: 1rem;
+    }
+
+    .education-output {
+      padding: 1rem;
+    }
+
+    .academic-line {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .field {
+      min-width: auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .terminal-header-bar {
+      font-size: 11px;
+    }
+
+    .terminal-prompt {
+      font-size: 12px;
+    }
+
+    .course-line {
+      font-size: 12px;
+    }
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro'; // Import the Header component
+import Skills from '../components/Skills.astro'; // Import the Skills component
+import Education from '../components/Education.astro'; // Import the Education component
+import Experience from '../components/Experience.astro'; // Import the Experience component
+import OpenSource from '../components/OpenSource.astro'; // Import the OpenSource component
+---
+
+<Layout title="Talha Balaj - Full Stack Engineer Portfolio">
+  <div class="page-container">
+    <div class="section-wrapper" style="animation-delay: 0.1s">
+      <Header />
+    </div>
+    
+    <div class="section-wrapper" style="animation-delay: 0.3s">
+      <Skills />
+    </div>
+    
+    <div class="section-wrapper" style="animation-delay: 0.5s">
+      <Experience />
+    </div>
+    
+    <div class="section-wrapper" style="animation-delay: 0.7s">
+      <Education />
+    </div>
+    
+    <div class="section-wrapper" style="animation-delay: 0.9s">
+      <OpenSource />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    min-height: 100vh;
+  }
+
+  .section-wrapper {
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-container {
+      gap: 2rem;
+    }
+  }
+</style>
