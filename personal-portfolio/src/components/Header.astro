@@ -1,0 +1,82 @@
+---
+// Component script (if any JavaScript logic is needed in the future)
+const email = "hey@talhabalaj.com";
+const phone = "+92 308 4552083";
+const linkedinUrl = "https://www.linkedin.com/in/talhabalaj"; // Replace with actual LinkedIn URL if different
+const githubUrl = "https://github.com/talhabalaj"; // Replace with actual GitHub URL if different
+const websiteUrl = "https://talhabalaj.com"; // Replace with actual Website URL if different
+---
+
+<header>
+  <div class="name-title">
+    <h1>TALHA BALAJ</h1>
+    <p>Full Stack Engineer</p>
+  </div>
+  <div class="contact-info">
+    <p><a href={`mailto:${email}`}>{email}</a> | {phone}</p>
+  </div>
+  <nav class="links">
+    <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href={githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href={websiteUrl} target="_blank" rel="noopener noreferrer">talhabalaj.com</a>
+  </nav>
+</header>
+
+<style>
+  header {
+    padding: 2rem 0;
+    text-align: left; /* Align text to the left like nexxel.dev */
+    border-bottom: 1px solid var(--accent-color); /* Optional: adds a separator line */
+    margin-bottom: 2rem;
+  }
+
+  .name-title h1 {
+    font-size: 2.2rem; /* Slightly smaller than page title for hierarchy */
+    margin-bottom: 0.25rem;
+    margin-top: 0; /* Remove top margin for h1 in header */
+    color: var(--text-color);
+  }
+
+  .name-title p {
+    font-size: 1.1rem;
+    color: var(--accent-color); /* Using accent color for the title */
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .contact-info a {
+    color: var(--accent-color);
+  }
+
+  .links a {
+    margin-right: 15px;
+    font-size: 0.9rem;
+    color: var(--text-color); /* Links color, can be accent too */
+    font-weight: bold;
+  }
+
+  .links a:last-child {
+    margin-right: 0;
+  }
+
+  @media (max-width: 600px) {
+    header {
+      text-align: center;
+    }
+    .name-title h1 {
+      font-size: 1.8rem;
+    }
+    .name-title p {
+      font-size: 1rem;
+    }
+    .links a {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+  }
+</style>

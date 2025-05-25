@@ -1,0 +1,80 @@
+---
+export interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Talha Balaj - Full Stack Engineer Portfolio" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-sans: 'Inter', sans-serif;
+            --text-color: #F1F5F9; /* Light gray text, similar to nexxel.dev */
+            --background-color: #0F172A; /* Dark blue-gray background, similar to nexxel.dev */
+            --accent-color: #38BDF8; /* A light blue accent, can be adjusted */
+            --container-max-width: 800px; /* Max width for content */
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        main {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1, h2, h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            color: var(--text-color); /* Ensure headings also use the light text color */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+        }
+
+        /* Add any other global styles or resets here */
+    </style>
+</head>
+<body>
+    <main>
+        <slot />
+    </main>
+</body>
+</html>
