@@ -1,0 +1,149 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: 'website' | 'article' | 'profile';
+  publishedTime?: string;
+  modifiedTime?: string;
+  keywords?: string[];
+  author?: string;
+  twitterHandle?: string;
+}
+
+const {
+  title = "Talha Balaj - Full Stack Engineer | React, Node.js, TypeScript Developer",
+  description = "Experienced Full Stack Engineer specializing in React, Node.js, TypeScript, and modern web technologies. Available for exciting opportunities in software development.",
+  image = "/og-image.jpg",
+  url = "https://talhabalaj.com",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  keywords = [
+    "Full Stack Developer",
+    "React Developer", 
+    "Node.js Developer",
+    "TypeScript",
+    "JavaScript",
+    "Software Engineer",
+    "Web Developer",
+    "Frontend Developer", 
+    "Backend Developer",
+    "Talha Balaj"
+  ],
+  author = "Talha Balaj",
+  twitterHandle = "@talhabalaj"
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = new URL(image, Astro.site).href;
+
+// Structured Data for Person
+const personStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Talha Balaj",
+  "jobTitle": "Full Stack Engineer",
+  "description": description,
+  "url": url,
+  "email": "hey@talhabalaj.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/talhabalaj",
+    "https://github.com/talhabalaj",
+    "https://talhabalaj.com"
+  ],
+  "knowsAbout": [
+    "React",
+    "Node.js", 
+    "TypeScript",
+    "JavaScript",
+    "Full Stack Development",
+    "Software Engineering",
+    "Web Development"
+  ],
+  "alumniOf": {
+    "@type": "Organization",
+    "name": "University"
+  },
+  "workLocation": {
+    "@type": "Place",
+    "name": "Remote/Global"
+  }
+};
+
+// Website Structured Data
+const websiteStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Talha Balaj Portfolio",
+  "description": description,
+  "url": url,
+  "author": {
+    "@type": "Person",
+    "name": author
+  },
+  "inLanguage": "en-US"
+};
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords.join(", ")} />
+<meta name="author" content={author} />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content={`${author} - ${title}`} />
+<meta property="og:site_name" content="Talha Balaj Portfolio" />
+<meta property="og:locale" content="en_US" />
+
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{author && <meta property="article:author" content={author} />}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={imageUrl} />
+<meta property="twitter:image:alt" content={`${author} - ${title}`} />
+{twitterHandle && <meta property="twitter:creator" content={twitterHandle} />}
+{twitterHandle && <meta property="twitter:site" content={twitterHandle} />}
+
+<!-- Additional SEO Meta Tags -->
+<meta name="theme-color" content="#000000" />
+<meta name="msapplication-TileColor" content="#000000" />
+<meta name="application-name" content="Talha Balaj Portfolio" />
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- DNS Prefetch -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(personStructuredData)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteStructuredData)} />
+
+<!-- Additional Performance Hints -->
+<meta name="format-detection" content="telephone=no" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Talha Balaj" /> 

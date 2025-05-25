@@ -40,7 +40,10 @@ const skillCategories = [
 ];
 ---
 
-<section class="skills terminal-card fade-in">
+<section class="skills terminal-card fade-in" id="skills" aria-labelledby="skills-heading">
+  <!-- Hidden heading for SEO -->
+  <h2 id="skills-heading" style="position: absolute; left: -10000px;">Technical Skills and Expertise</h2>
+  
   <div class="terminal-window">
     <div class="terminal-header-bar">
       <span class="terminal-title">~/skills $ find . -name "*.skill" -type f</span>
@@ -49,18 +52,21 @@ const skillCategories = [
       <div class="skills-output">
         {skillCategories.map((category, categoryIndex) => (
           <div class="skill-category" style={`animation-delay: ${categoryIndex * 0.2}s`}>
+            <!-- Hidden heading for each category -->
+            <h3 style="position: absolute; left: -10000px;">{category.category} Skills</h3>
+            
             <div class="terminal-prompt">
               <span class="prompt-symbol">$</span>
               <span>ls -la ./{category.category.toLowerCase()}/</span>
             </div>
             
-            <div class="directory-listing">
+            <div class="directory-listing" role="list" aria-label={`${category.category} skills`}>
               {category.skills.map((skill, skillIndex) => (
-                <div class="file-line" style={`animation-delay: ${(categoryIndex * 0.2) + (skillIndex * 0.1)}s`}>
-                  <span class="permissions">-rw-r--r--</span>
-                  <span class="size">1024</span>
-                  <span class="date">Jan 01 2024</span>
-                  <span class="filename">{skill.name.toLowerCase().replace(/\s+/g, '_')}.skill</span>
+                <div class="file-line" style={`animation-delay: ${(categoryIndex * 0.2) + (skillIndex * 0.1)}s`} role="listitem">
+                  <span class="permissions" aria-hidden="true">-rw-r--r--</span>
+                  <span class="size" aria-hidden="true">1024</span>
+                  <span class="date" aria-hidden="true">Jan 01 2024</span>
+                  <span class="filename" data-skill={skill.name.toLowerCase()}>{skill.name.toLowerCase().replace(/\s+/g, '_')}.skill</span>
                 </div>
               ))}
             </div>
@@ -79,7 +85,7 @@ const skillCategories = [
 
       <div class="terminal-prompt">
         <span class="prompt-symbol">$</span>
-        <span class="cursor"></span>
+        <span class="cursor" aria-hidden="true"></span>
       </div>
     </div>
   </div>

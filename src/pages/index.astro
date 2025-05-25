@@ -5,9 +5,30 @@ import Skills from '../components/Skills.astro'; // Import the Skills component
 import Education from '../components/Education.astro'; // Import the Education component
 import Experience from '../components/Experience.astro'; // Import the Experience component
 import OpenSource from '../components/OpenSource.astro'; // Import the OpenSource component
+
+// SEO data for the homepage
+const seoData = {
+  title: "Talha Balaj - Full Stack Engineer | React, Node.js, TypeScript Developer",
+  description: "Experienced Full Stack Engineer specializing in React, Node.js, TypeScript, and modern web technologies. Available for exciting opportunities in software development.",
+  keywords: [
+    "Full Stack Developer",
+    "React Developer", 
+    "Node.js Developer",
+    "TypeScript",
+    "JavaScript",
+    "Software Engineer",
+    "Web Developer",
+    "Frontend Developer", 
+    "Backend Developer",
+    "Talha Balaj",
+    "Portfolio",
+    "Software Development",
+    "Modern Web Technologies"
+  ]
+};
 ---
 
-<Layout title="Talha Balaj - Full Stack Engineer Portfolio">
+<Layout {...seoData}>
   <div class="page-container">
     <div class="section-wrapper" style="animation-delay: 0.1s">
       <Header />

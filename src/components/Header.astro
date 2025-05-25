@@ -6,7 +6,22 @@ const githubUrl = "https://github.com/talhabalaj";
 const websiteUrl = "https://talhabalaj.com";
 ---
 
-<header class="terminal-header terminal-card fade-in">
+<!-- Hidden semantic data for SEO -->
+<div itemscope itemtype="https://schema.org/Person" style="display: none;">
+  <h1 itemprop="name">Talha Balaj</h1>
+  <span itemprop="jobTitle">Full Stack Engineer</span>
+  <span itemprop="email">hey@talhabalaj.com</span>
+  <a itemprop="url" href="https://talhabalaj.com">Personal Website</a>
+  <a itemprop="sameAs" href="https://www.linkedin.com/in/talhabalaj">LinkedIn</a>
+  <a itemprop="sameAs" href="https://github.com/talhabalaj">GitHub</a>
+  <span itemprop="knowsAbout">React</span>
+  <span itemprop="knowsAbout">Node.js</span>
+  <span itemprop="knowsAbout">TypeScript</span>
+  <span itemprop="knowsAbout">JavaScript</span>
+  <span itemprop="knowsAbout">Full Stack Development</span>
+</div>
+
+<header class="terminal-header terminal-card fade-in" role="banner">
   <div class="terminal-window">
     <div class="terminal-header-bar">
       <span class="terminal-title">~/talha-balaj/portfolio $ whoami</span>
@@ -18,7 +33,7 @@ const websiteUrl = "https://talhabalaj.com";
       </div>
       
       <div class="user-info">
-        <pre class="ascii-art">
+        <pre class="ascii-art" aria-hidden="true">
 ████████ █████  ██      ██   ██  █████  
    ██   ██   ██ ██      ██   ██ ██   ██ 
    ██   ███████ ██      ███████ ███████ 
@@ -38,11 +53,11 @@ const websiteUrl = "https://talhabalaj.com";
           <div class="detail-line">
             <span class="field">Status:</span>
             <span class="value">Available for opportunities</span>
-            <span class="status-indicator">[ONLINE]</span>
+            <span class="status-indicator" role="status" aria-live="polite">[ONLINE]</span>
           </div>
           <div class="detail-line">
             <span class="field">Email:</span>
-            <a href={`mailto:${email}`} class="terminal-link">{email}</a>
+            <a href={`mailto:${email}`} class="terminal-link" aria-label="Send email to Talha Balaj">{email}</a>
           </div>
         </div>
       </div>
@@ -52,12 +67,12 @@ const websiteUrl = "https://talhabalaj.com";
         <span>ls -la /social/</span>
       </div>
       
-      <div class="directory-listing">
+      <nav class="directory-listing" role="navigation" aria-label="Social media profiles">
         <div class="file-line">
           <span class="permissions">drwxr-xr-x</span>
           <span class="size">4096</span>
           <span class="date">Jan 01 2024</span>
-          <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="terminal-link">
+          <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="terminal-link" aria-label="View Talha Balaj's LinkedIn profile">
             linkedin.profile
           </a>
         </div>
@@ -65,7 +80,7 @@ const websiteUrl = "https://talhabalaj.com";
           <span class="permissions">drwxr-xr-x</span>
           <span class="size">4096</span>
           <span class="date">Jan 01 2024</span>
-          <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="terminal-link">
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="terminal-link" aria-label="View Talha Balaj's GitHub repositories">
             github.repos
           </a>
         </div>
@@ -73,15 +88,15 @@ const websiteUrl = "https://talhabalaj.com";
           <span class="permissions">drwxr-xr-x</span>
           <span class="size">4096</span>
           <span class="date">Jan 01 2024</span>
-          <a href={websiteUrl} target="_blank" rel="noopener noreferrer" class="terminal-link">
+          <a href={websiteUrl} target="_blank" rel="noopener noreferrer" class="terminal-link" aria-label="Visit Talha Balaj's personal website">
             personal.website
           </a>
         </div>
-      </div>
+      </nav>
 
       <div class="terminal-prompt">
         <span class="prompt-symbol">$</span>
-        <span class="cursor"></span>
+        <span class="cursor" aria-hidden="true"></span>
       </div>
     </div>
   </div>

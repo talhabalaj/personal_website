@@ -1,0 +1,225 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const seoData = {
+  title: "404 - Page Not Found | Talha Balaj",
+  description: "The page you're looking for doesn't exist. Navigate back to Talha Balaj's portfolio to explore projects and experience.",
+  keywords: ["404", "Page Not Found", "Talha Balaj", "Portfolio"]
+};
+---
+
+<Layout {...seoData}>
+  <div class="error-container">
+    <div class="terminal-window">
+      <div class="terminal-header-bar">
+        <span class="terminal-title">~/portfolio $ ls -la page</span>
+      </div>
+      <div class="terminal-content">
+        <div class="terminal-prompt">
+          <span class="prompt-symbol">$</span>
+          <span>find /portfolio -name "requested-page" -type f</span>
+        </div>
+        
+        <div class="error-output">
+          <div class="error-code">
+            <pre class="ascii-art">
+  ██   ██  ██████  ██   ██ 
+  ██   ██ ██  ████ ██   ██ 
+  ███████ ██ ██ ██ ███████ 
+       ██ ████  ██      ██ 
+       ██  ██████       ██
+            </pre>
+          </div>
+          
+          <div class="error-message">
+            <p><strong>ERROR:</strong> File not found</p>
+            <p>The requested page does not exist in the current directory.</p>
+          </div>
+        </div>
+
+        <div class="terminal-prompt">
+          <span class="prompt-symbol">$</span>
+          <span>suggest --alternative-paths</span>
+        </div>
+        
+        <div class="suggestions">
+          <div class="suggestion-line">
+            <span class="permissions">-rw-r--r--</span>
+            <span class="size">4096</span>
+            <span class="date">Jan 01 2024</span>
+            <a href="/" class="terminal-link">portfolio.home</a>
+          </div>
+          <div class="suggestion-line">
+            <span class="permissions">-rw-r--r--</span>
+            <span class="size">2048</span>
+            <span class="date">Jan 01 2024</span>
+            <a href="/#skills" class="terminal-link">skills.section</a>
+          </div>
+          <div class="suggestion-line">
+            <span class="permissions">-rw-r--r--</span>
+            <span class="size">3072</span>
+            <span class="date">Jan 01 2024</span>
+            <a href="/#experience" class="terminal-link">experience.section</a>
+          </div>
+        </div>
+
+        <div class="terminal-prompt">
+          <span class="prompt-symbol">$</span>
+          <span class="cursor"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .terminal-window {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .terminal-header-bar {
+    background: var(--bg-tertiary);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .terminal-content {
+    padding: 2rem;
+  }
+
+  .terminal-prompt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 14px;
+  }
+
+  .prompt-symbol {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .error-output {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .error-code {
+    margin-bottom: 1.5rem;
+  }
+
+  .ascii-art {
+    color: var(--text-muted);
+    font-size: 10px;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .error-message {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+
+  .error-message strong {
+    color: var(--text-primary);
+  }
+
+  .suggestions {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 13px;
+  }
+
+  .suggestion-line {
+    display: grid;
+    grid-template-columns: 120px 60px 100px 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+  }
+
+  .suggestion-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .permissions,
+  .size,
+  .date {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .terminal-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .terminal-link:hover {
+    border-bottom: 1px solid var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .cursor::after {
+    content: '█';
+    color: var(--text-primary);
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .terminal-content {
+      padding: 1rem;
+    }
+    
+    .suggestion-line {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+      text-align: left;
+    }
+
+    .permissions,
+    .size,
+    .date {
+      display: none;
+    }
+  }
+</style> 
