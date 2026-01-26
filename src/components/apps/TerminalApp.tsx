@@ -500,12 +500,12 @@ export function TerminalApp() {
       {history.map((item, index) => (
         <div key={index} className="mb-1">
           {item.command !== undefined && item.command !== '' && (
-            <div className="flex items-center gap-0">
+            <div className="flex items-center">
               <span className="text-green-400">talha@talhaos</span>
               <span className="text-text-secondary">:</span>
               <span className="text-blue-400">{formatPath(item.cwd)}</span>
-              <span className="text-text-secondary">$ </span>
-              <span className="text-text-primary">{item.command}</span>
+              <span className="text-text-secondary">$</span>
+              <span className="text-text-primary ml-2">{item.command}</span>
             </div>
           )}
           {item.output.map((line, i) => (
@@ -531,7 +531,7 @@ export function TerminalApp() {
           value={currentInput}
           onChange={(e) => setCurrentInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-1 bg-transparent border-none outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 text-text-primary caret-text-primary"
+          className="flex-1 ml-2 bg-transparent border-none outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 text-text-primary caret-text-primary"
           style={{ outline: 'none' }}
           autoFocus
           spellCheck={false}
