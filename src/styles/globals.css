@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* Design System - Minimal Dark */
+@theme {
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #141414;
+  --color-bg-elevated: #1e1e1e;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-border: #2a2a2a;
+  --color-accent: #3b82f6;
+
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-mono);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow: hidden;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

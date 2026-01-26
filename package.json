@@ -10,11 +10,22 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^6.0.0",
+    "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.2.1",
+    "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.8.0",
-    "date-fns": "^4.1.0"
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.29.0",
+    "lucide-react": "^0.563.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-rnd": "^10.5.2",
+    "tailwindcss": "^4.1.18",
+    "zustand": "^5.0.10"
   },
   "devDependencies": {
-    "@types/date-fns": "^2.5.3"
+    "@types/date-fns": "^2.5.3",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3"
   }
 }

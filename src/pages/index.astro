@@ -1,10 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro'; // Import the Header component
-import Skills from '../components/Skills.astro'; // Import the Skills component
-import Education from '../components/Education.astro'; // Import the Education component
-import Experience from '../components/Experience.astro'; // Import the Experience component
-import OpenSource from '../components/OpenSource.astro'; // Import the OpenSource component
+import { Desktop } from '../components/desktop/Desktop';
 
 // SEO data for the homepage
 const seoData = {
@@ -12,13 +8,13 @@ const seoData = {
   description: "Experienced Full Stack Engineer specializing in React, Node.js, TypeScript, and modern web technologies. Available for exciting opportunities in software development.",
   keywords: [
     "Full Stack Developer",
-    "React Developer", 
+    "React Developer",
     "Node.js Developer",
     "TypeScript",
     "JavaScript",
     "Software Engineer",
     "Web Developer",
-    "Frontend Developer", 
+    "Frontend Developer",
     "Backend Developer",
     "Talha Balaj",
     "Portfolio",
@@ -29,56 +25,60 @@ const seoData = {
 ---
 
 <Layout {...seoData}>
-  <div class="page-container">
-    <div class="section-wrapper" style="animation-delay: 0.1s">
-      <Header />
-    </div>
-    
-    <div class="section-wrapper" style="animation-delay: 0.3s">
-      <Skills />
-    </div>
-    
-    <div class="section-wrapper" style="animation-delay: 0.5s">
-      <Experience />
-    </div>
-    
-    <div class="section-wrapper" style="animation-delay: 0.7s">
-      <Education />
-    </div>
-    
-    <div class="section-wrapper" style="animation-delay: 0.9s">
-      <OpenSource />
-    </div>
-  </div>
+  <Desktop client:load />
 </Layout>
 
+<!-- Static SEO Content (hidden but crawlable) -->
+<div class="sr-only">
+  <h1>Talha Balaj - Full Stack Engineer</h1>
+  <p>Experienced Full Stack Engineer specializing in React, Node.js, TypeScript, and modern web technologies. Currently working at mobileLive, Inc in Toronto, ON.</p>
+
+  <h2>Technical Skills</h2>
+  <ul>
+    <li>Frontend: React, NextJS, TypeScript, JavaScript, Tailwind CSS</li>
+    <li>Backend: Node.js, NestJS, Express, AWS Lambda</li>
+    <li>Database: MySQL, PostgreSQL, MongoDB</li>
+    <li>DevOps: Docker, Git, GitHub Actions, AWS</li>
+  </ul>
+
+  <h2>Work Experience</h2>
+  <article>
+    <h3>Senior Software Engineer at mobileLive, Inc</h3>
+    <p>April 2024 - Present | Toronto, ON</p>
+    <p>Reverse engineered and rebuilt in-house pricing engine SDK for Staples.ca. Lead development of new NextJS checkout experience for the entire store platform.</p>
+  </article>
+
+  <article>
+    <h3>Software Engineer at Nextbridge, Inc</h3>
+    <p>June 2022 - March 2024 | Lahore, Pakistan</p>
+    <p>Developed customer device management interface with real-time tracking. Led migration from Create React App to NextJS.</p>
+  </article>
+
+  <h2>Education</h2>
+  <article>
+    <h3>Bachelors in Computer Science</h3>
+    <p>University of Engineering and Technology, Lahore | 2018 - 2022</p>
+    <p>GPA: 3.4/4.0</p>
+  </article>
+
+  <h2>Contact</h2>
+  <ul>
+    <li>Email: <a href="mailto:hey@talhabalaj.com">hey@talhabalaj.com</a></li>
+    <li>GitHub: <a href="https://github.com/talhabalaj">github.com/talhabalaj</a></li>
+    <li>LinkedIn: <a href="https://www.linkedin.com/in/talhabalaj">linkedin.com/in/talhabalaj</a></li>
+  </ul>
+</div>
+
 <style>
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    min-height: 100vh;
-  }
-
-  .section-wrapper {
-    animation: fadeInUp 0.8s ease forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .page-container {
-      gap: 2rem;
-    }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 </style>

@@ -3,223 +3,180 @@ import Layout from '../layouts/Layout.astro';
 
 const seoData = {
   title: "404 - Page Not Found | Talha Balaj",
-  description: "The page you're looking for doesn't exist. Navigate back to Talha Balaj's portfolio to explore projects and experience.",
-  keywords: ["404", "Page Not Found", "Talha Balaj", "Portfolio"]
+  description: "The page you're looking for doesn't exist.",
 };
 ---
 
 <Layout {...seoData}>
-  <div class="error-container">
-    <div class="terminal-window">
-      <div class="terminal-header-bar">
-        <span class="terminal-title">~/portfolio $ ls -la page</span>
+  <div class="bsod">
+    <div class="bsod-content">
+      <div class="bsod-emoticon">:(</div>
+
+      <h1 class="bsod-title">
+        Your PC ran into a problem and needs to restart.
+        We're just collecting some error info, and then we'll
+        restart for you.
+      </h1>
+
+      <div class="bsod-progress">
+        <span class="progress-text">404% complete</span>
       </div>
-      <div class="terminal-content">
-        <div class="terminal-prompt">
-          <span class="prompt-symbol">$</span>
-          <span>find /portfolio -name "requested-page" -type f</span>
-        </div>
-        
-        <div class="error-output">
-          <div class="error-code">
-            <pre class="ascii-art">
-  ██   ██  ██████  ██   ██ 
-  ██   ██ ██  ████ ██   ██ 
-  ███████ ██ ██ ██ ███████ 
-       ██ ████  ██      ██ 
-       ██  ██████       ██
-            </pre>
-          </div>
-          
-          <div class="error-message">
-            <p><strong>ERROR:</strong> File not found</p>
-            <p>The requested page does not exist in the current directory.</p>
-          </div>
-        </div>
 
-        <div class="terminal-prompt">
-          <span class="prompt-symbol">$</span>
-          <span>suggest --alternative-paths</span>
+      <div class="bsod-info">
+        <div class="qr-placeholder">
+          <div class="qr-fake"></div>
         </div>
-        
-        <div class="suggestions">
-          <div class="suggestion-line">
-            <span class="permissions">-rw-r--r--</span>
-            <span class="size">4096</span>
-            <span class="date">Jan 01 2024</span>
-            <a href="/" class="terminal-link">portfolio.home</a>
-          </div>
-          <div class="suggestion-line">
-            <span class="permissions">-rw-r--r--</span>
-            <span class="size">2048</span>
-            <span class="date">Jan 01 2024</span>
-            <a href="/#skills" class="terminal-link">skills.section</a>
-          </div>
-          <div class="suggestion-line">
-            <span class="permissions">-rw-r--r--</span>
-            <span class="size">3072</span>
-            <span class="date">Jan 01 2024</span>
-            <a href="/#experience" class="terminal-link">experience.section</a>
-          </div>
+        <div class="info-text">
+          <p>For more information about this issue and possible fixes, visit</p>
+          <p class="info-link">https://talhabalaj.com</p>
+          <br />
+          <p>If you call a support person, give them this info:</p>
+          <p class="error-code">Stop code: PAGE_NOT_FOUND_EXCEPTION</p>
         </div>
+      </div>
 
-        <div class="terminal-prompt">
-          <span class="prompt-symbol">$</span>
-          <span class="cursor"></span>
-        </div>
+      <div class="bsod-actions">
+        <a href="/" class="restart-button">
+          Restart (Go Home)
+        </a>
       </div>
     </div>
   </div>
 </Layout>
 
 <style>
-  .error-container {
+  .bsod {
+    position: fixed;
+    inset: 0;
+    background: #0078d4;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  .terminal-window {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    font-family: var(--font-mono);
-    max-width: 600px;
-    width: 100%;
-  }
-
-  .terminal-header-bar {
-    background: var(--bg-tertiary);
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 12px;
-    color: var(--text-secondary);
-  }
-
-  .terminal-content {
     padding: 2rem;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: white;
   }
 
-  .terminal-prompt {
+  .bsod-content {
+    max-width: 800px;
+    text-align: left;
+  }
+
+  .bsod-emoticon {
+    font-size: 8rem;
+    font-weight: 200;
+    margin-bottom: 2rem;
+    line-height: 1;
+  }
+
+  .bsod-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+  .bsod-progress {
+    margin-bottom: 3rem;
+  }
+
+  .progress-text {
+    font-size: 1.25rem;
+  }
+
+  .bsod-info {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 14px;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
   }
 
-  .prompt-symbol {
-    color: var(--text-primary);
-    font-weight: 500;
+  .qr-placeholder {
+    flex-shrink: 0;
   }
 
-  .error-output {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    padding: 2rem;
-    margin: 1rem 0;
-    text-align: center;
+  .qr-fake {
+    width: 100px;
+    height: 100px;
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 2px;
+    padding: 5px;
+  }
+
+  .qr-fake::before {
+    content: '';
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        #000 0px,
+        #000 8px,
+        transparent 8px,
+        transparent 12px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        #000 0px,
+        #000 8px,
+        transparent 8px,
+        transparent 12px
+      );
+    background-size: 20px 20px;
+    opacity: 0.8;
+  }
+
+  .info-text {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  .info-link {
+    text-decoration: underline;
   }
 
   .error-code {
-    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
   }
 
-  .ascii-art {
-    color: var(--text-muted);
-    font-size: 10px;
-    line-height: 1;
-    margin: 0;
+  .bsod-actions {
+    margin-top: 2rem;
   }
 
-  .error-message {
-    color: var(--text-secondary);
-    font-size: 14px;
-  }
-
-  .error-message strong {
-    color: var(--text-primary);
-  }
-
-  .suggestions {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    padding: 1rem;
-    margin: 1rem 0;
-    font-size: 13px;
-  }
-
-  .suggestion-line {
-    display: grid;
-    grid-template-columns: 120px 60px 100px 1fr;
-    gap: 1rem;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-  }
-
-  .suggestion-line:last-child {
-    margin-bottom: 0;
-  }
-
-  .permissions,
-  .size,
-  .date {
-    color: var(--text-muted);
-    font-size: 12px;
-  }
-
-  .terminal-link {
-    color: var(--text-primary);
+  .restart-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: white;
+    color: #0078d4;
     text-decoration: none;
-    border-bottom: 1px solid transparent;
+    font-weight: 600;
     transition: all 0.2s ease;
   }
 
-  .terminal-link:hover {
-    border-bottom: 1px solid var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
+  .restart-button:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
   }
 
-  .cursor::after {
-    content: '█';
-    color: var(--text-primary);
-    animation: blink 1s infinite;
-    margin-left: 2px;
-  }
-
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .terminal-content {
-      padding: 1rem;
-    }
-    
-    .suggestion-line {
-      grid-template-columns: 1fr;
-      gap: 0.25rem;
-      text-align: left;
+  @media (max-width: 640px) {
+    .bsod-emoticon {
+      font-size: 5rem;
     }
 
-    .permissions,
-    .size,
-    .date {
-      display: none;
+    .bsod-title {
+      font-size: 1.125rem;
+    }
+
+    .bsod-info {
+      flex-direction: column;
+    }
+
+    .qr-fake {
+      width: 80px;
+      height: 80px;
     }
   }
-</style> 
+</style>
