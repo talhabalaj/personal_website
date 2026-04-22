@@ -3,24 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import * as LucideIcons from 'lucide-react';
 import { ChevronLeft } from 'lucide-react';
 import { desktopApps, type AppConfig } from '../../data/apps';
-import { ProfileApp } from '../apps/ProfileApp';
-import { ProjectsApp } from '../apps/ProjectsApp';
-import { ContactApp } from '../apps/ContactApp';
 import { TerminalApp } from '../apps/TerminalApp';
 import { SettingsApp } from '../apps/SettingsApp';
 import { SnakeApp } from '../apps/games/SnakeApp';
 import { MinesweeperApp } from '../apps/games/MinesweeperApp';
-import { TrashApp } from '../apps/TrashApp';
 
 const AppComponents: Record<string, React.ComponentType> = {
-  profile: ProfileApp,
-  projects: ProjectsApp,
-  contact: ContactApp,
   terminal: TerminalApp,
   settings: SettingsApp,
   snake: SnakeApp,
   minesweeper: MinesweeperApp,
-  trash: TrashApp,
 };
 
 export function MobileDesktop() {

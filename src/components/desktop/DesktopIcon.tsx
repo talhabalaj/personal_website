@@ -14,13 +14,14 @@ export function DesktopIcon({ app, index }: DesktopIconProps) {
   // Get icon component dynamically
   const IconComponent = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[app.icon] || LucideIcons.File;
 
-  const handleDoubleClick = () => {
+  const handleOpen = () => {
     openWindow(app.id, app.title, app.defaultSize);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      openWindow(app.id, app.title, app.defaultSize);
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleOpen();
     }
   };
 
@@ -29,16 +30,18 @@ export function DesktopIcon({ app, index }: DesktopIconProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, duration: 0.3 }}
-      className="flex flex-col items-center gap-1.5 p-2 rounded-lg hover:bg-white/5 focus:bg-white/10 focus:outline-none transition-colors cursor-pointer w-20 group"
-      onDoubleClick={handleDoubleClick}
+      className="flex min-h-[92px] w-24 flex-col items-center gap-2 rounded-lg p-2 transition-colors hover:bg-white/5 focus:bg-white/10 focus:outline-none cursor-pointer group"
+      onClick={handleOpen}
+      onDoubleClick={handleOpen}
       onKeyDown={handleKeyDown}
       tabIndex={0}
+      title={app.name}
       aria-label={`Open ${app.name}`}
     >
       <div className="w-12 h-12 flex items-center justify-center bg-bg-elevated rounded-lg border border-border group-hover:border-border/80 group-hover:bg-bg-secondary transition-colors">
         <IconComponent className="w-6 h-6 text-text-primary" />
       </div>
-      <span className="text-[11px] text-text-primary text-center leading-tight font-mono break-words max-w-full">
+      <span className="max-w-full text-center font-mono text-[11px] leading-snug text-text-primary break-words">
         {app.name}
       </span>
     </motion.button>

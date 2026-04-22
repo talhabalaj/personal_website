@@ -10,32 +10,6 @@ export interface AppConfig {
 }
 
 export const apps: AppConfig[] = [
-  // Core Apps
-  {
-    id: 'profile',
-    name: 'Profile',
-    icon: 'User',
-    title: 'Profile - Talha Balaj',
-    defaultSize: { width: 700, height: 600 },
-    category: 'core',
-  },
-  {
-    id: 'projects',
-    name: 'Projects',
-    icon: 'FolderOpen',
-    title: 'Projects',
-    defaultSize: { width: 600, height: 500 },
-    category: 'core',
-  },
-  {
-    id: 'contact',
-    name: 'Contact',
-    icon: 'Mail',
-    title: 'Contact Me',
-    defaultSize: { width: 450, height: 550 },
-    category: 'core',
-  },
-
   // Interactive Apps
   {
     id: 'terminal',
@@ -71,14 +45,6 @@ export const apps: AppConfig[] = [
     defaultSize: { width: 320, height: 420 },
     category: 'fun',
   },
-  {
-    id: 'trash',
-    name: 'Trash',
-    icon: 'Trash2',
-    title: 'Trash',
-    defaultSize: { width: 400, height: 300 },
-    category: 'fun',
-  },
 ];
 
 export const getAppConfig = (appId: AppId): AppConfig | undefined => {
@@ -86,5 +52,5 @@ export const getAppConfig = (appId: AppId): AppConfig | undefined => {
 };
 
 export const desktopApps = apps.filter(app =>
-  ['profile', 'projects', 'contact', 'terminal', 'settings', 'snake', 'minesweeper', 'trash'].includes(app.id)
+  ['terminal', 'settings', 'snake', 'minesweeper'].includes(app.id)
 );

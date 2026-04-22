@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface BootSequenceProps {
@@ -18,6 +18,13 @@ const bootMessages = [
 export function BootSequence({ onComplete }: BootSequenceProps) {
   const [visibleMessages, setVisibleMessages] = useState<number>(0);
   const [showCursor, setShowCursor] = useState(true);
+  const hasCompletedRef = useRef(false);
+
+  const handleComplete = useCallback(() => {
+    if (hasCompletedRef.current) return;
+    hasCompletedRef.current = true;
+    onComplete();
+  }, [onComplete]);
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -33,7 +40,7 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
     // Complete boot sequence
     timers.push(
       setTimeout(() => {
-        onComplete();
+        handleComplete();
       }, 3000)
     );
 
@@ -42,11 +49,19 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
       setShowCursor((prev) => !prev);
     }, 500);
 
+    const skipEvents: Array<keyof DocumentEventMap> = ['keydown', 'mousedown', 'touchstart'];
+    skipEvents.forEach((eventName) => {
+      document.addEventListener(eventName, handleComplete);
+    });
+
     return () => {
       timers.forEach(clearTimeout);
       clearInterval(cursorInterval);
+      skipEvents.forEach((eventName) => {
+        document.removeEventListener(eventName, handleComplete);
+      });
     };
-  }, [onComplete]);
+  }, [handleComplete]);
 
   return (
     <motion.div
@@ -108,11 +123,11 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
       </div>
 
       {/* Skip on keypress */}
-      <div
-        className="absolute inset-0"
-        onClick={onComplete}
-        onKeyDown={onComplete}
-        tabIndex={0}
+      <button
+        type="button"
+        className="absolute inset-0 cursor-default bg-transparent"
+        onClick={handleComplete}
+        onKeyDown={handleComplete}
         aria-label="Skip boot sequence"
       />
     </motion.div>

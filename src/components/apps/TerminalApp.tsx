@@ -17,30 +17,6 @@ interface FileNode {
 
 const fileSystem: Record<string, FileNode> = {
   '/home/talha': { type: 'dir' },
-  '/home/talha/profile.txt': {
-    type: 'file',
-    content: `Name: Talha Balaj
-Role: Full Stack Engineer
-Location: Toronto, ON
-Status: Available for opportunities
-
-Experienced Full Stack Engineer specializing in React, Node.js,
-TypeScript, and modern web technologies.
-
-Run "open profile" to see full profile with experience, skills & education.`,
-  },
-  '/home/talha/projects': { type: 'dir' },
-  '/home/talha/projects/vscode-font-changer': { type: 'dir' },
-  '/home/talha/projects/vscode-font-changer/README.md': {
-    type: 'file',
-    content: `# VSCode Font Changer
-
-A VS Code extension that allows you to quickly switch between fonts.
-
-Stars: 10 | Downloads: 22k+
-
-https://github.com/talhabalaj/vscode-font-changer`,
-  },
   '/home/talha/.secret': {
     type: 'file',
     content: `
@@ -51,13 +27,6 @@ https://github.com/talhabalaj/vscode-font-changer`,
 
   Congrats! You found the secret file!
   You must be a terminal pro. 🎉`,
-  },
-  '/home/talha/contact.txt': {
-    type: 'file',
-    content: `Email: hey@talhabalaj.com
-GitHub: github.com/talhabalaj
-LinkedIn: linkedin.com/in/talhabalaj
-Website: talhabalaj.com`,
   },
 };
 
@@ -198,8 +167,7 @@ export function TerminalApp() {
           '  - Use ↑/↓ arrows for command history',
           '  - Use Ctrl+C to cancel current input',
           '',
-          'Apps: profile, projects, contact, terminal, settings,',
-          '      snake, minesweeper, trash',
+          'Apps: terminal, settings, snake, minesweeper',
         ];
         break;
 
@@ -304,14 +272,10 @@ export function TerminalApp() {
       case 'open': {
         const appName = args[0]?.toLowerCase();
         const appMap: Record<string, AppId> = {
-          profile: 'profile',
-          projects: 'projects',
-          contact: 'contact',
           terminal: 'terminal',
           settings: 'settings',
           snake: 'snake',
           minesweeper: 'minesweeper',
-          trash: 'trash',
         };
 
         if (!appName) {
@@ -408,7 +372,7 @@ export function TerminalApp() {
 
     // App completion for 'open'
     if (cmd === 'open') {
-      const appNames = ['profile', 'projects', 'contact', 'terminal', 'settings', 'snake', 'minesweeper', 'trash'];
+      const appNames = ['terminal', 'settings', 'snake', 'minesweeper'];
       return appNames.filter(a => a.startsWith(lastPart.toLowerCase())).map(a => `open ${a}`);
     }
 

@@ -2,14 +2,10 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export type AppId =
-  | 'profile'
-  | 'projects'
-  | 'contact'
   | 'terminal'
   | 'settings'
   | 'snake'
-  | 'minesweeper'
-  | 'trash';
+  | 'minesweeper';
 
 export interface WindowPosition {
   x: number;
@@ -32,10 +28,16 @@ export interface WindowState {
   zIndex: number;
 }
 
+interface SavedWindowLayout {
+  position: WindowPosition;
+  size: WindowSize;
+}
+
 interface WindowStore {
   windows: WindowState[];
   activeWindowId: string | null;
   highestZIndex: number;
+  savedLayouts: Partial<Record<AppId, SavedWindowLayout>>;
 
   // Actions
   openWindow: (appId: AppId, title: string, defaultSize?: WindowSize) => void;
@@ -61,6 +63,7 @@ export const useWindowStore = create<WindowStore>()(
       windows: [],
       activeWindowId: null,
       highestZIndex: 0,
+      savedLayouts: {},
 
       openWindow: (appId, title, defaultSize = DEFAULT_WINDOW_SIZE) => {
         const state = get();
@@ -78,20 +81,22 @@ export const useWindowStore = create<WindowStore>()(
 
         const newZIndex = state.highestZIndex + 1;
         const id = `${appId}-${Date.now()}`;
+        const savedLayout = state.savedLayouts[appId];
+        const windowSize = savedLayout?.size ?? defaultSize;
 
         // Center window with slight random offset
         const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
         const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
 
-        const x = Math.max(50, (viewportWidth - defaultSize.width) / 2 + getRandomOffset());
-        const y = Math.max(50, (viewportHeight - defaultSize.height) / 2 + getRandomOffset() - 50);
+        const x = savedLayout?.position.x ?? Math.max(50, (viewportWidth - windowSize.width) / 2 + getRandomOffset());
+        const y = savedLayout?.position.y ?? Math.max(50, (viewportHeight - windowSize.height) / 2 + getRandomOffset() - 50);
 
         const newWindow: WindowState = {
           id,
           appId,
           title,
           position: { x, y },
-          size: defaultSize,
+          size: windowSize,
           isMinimized: false,
           isMaximized: false,
           zIndex: newZIndex,
@@ -130,11 +135,16 @@ export const useWindowStore = create<WindowStore>()(
       },
 
       maximizeWindow: (id) => {
-        set((state) => ({
+        const state = get();
+        const newZIndex = state.highestZIndex + 1;
+
+        set({
           windows: state.windows.map(w =>
-            w.id === id ? { ...w, isMaximized: true } : w
+            w.id === id ? { ...w, isMaximized: true, zIndex: newZIndex } : w
           ),
-        }));
+          activeWindowId: id,
+          highestZIndex: newZIndex,
+        });
       },
 
       restoreWindow: (id) => {
@@ -173,19 +183,43 @@ export const useWindowStore = create<WindowStore>()(
       },
 
       updateWindowPosition: (id, position) => {
-        set((state) => ({
-          windows: state.windows.map(w =>
-            w.id === id ? { ...w, position } : w
-          ),
-        }));
+        set((state) => {
+          const targetWindow = state.windows.find((w) => w.id === id);
+          if (!targetWindow) return state;
+
+          return {
+            windows: state.windows.map(w =>
+              w.id === id ? { ...w, position } : w
+            ),
+            savedLayouts: {
+              ...state.savedLayouts,
+              [targetWindow.appId]: {
+                position,
+                size: targetWindow.size,
+              },
+            },
+          };
+        });
       },
 
       updateWindowSize: (id, size) => {
-        set((state) => ({
-          windows: state.windows.map(w =>
-            w.id === id ? { ...w, size } : w
-          ),
-        }));
+        set((state) => {
+          const targetWindow = state.windows.find((w) => w.id === id);
+          if (!targetWindow) return state;
+
+          return {
+            windows: state.windows.map(w =>
+              w.id === id ? { ...w, size } : w
+            ),
+            savedLayouts: {
+              ...state.savedLayouts,
+              [targetWindow.appId]: {
+                position: targetWindow.position,
+                size,
+              },
+            },
+          };
+        });
       },
 
       closeAllWindows: () => {
@@ -201,14 +235,9 @@ export const useWindowStore = create<WindowStore>()(
       },
     }),
     {
-      name: 'window-store',
+      name: 'window-store-v2',
       partialize: (state) => ({
-        // Only persist window positions, not the full state
-        windows: state.windows.map(w => ({
-          appId: w.appId,
-          position: w.position,
-          size: w.size,
-        })),
+        savedLayouts: state.savedLayouts,
       }),
     }
   )
